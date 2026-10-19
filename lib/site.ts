@@ -6,8 +6,8 @@ export const SITE_NAME = 'Open Plans';
 export const SITE_TAGLINE = 'Real plans with people nearby';
 export const SITE_DESCRIPTION =
   'Open Plans shows you real plans happening near you, from movie nights to badminton at dawn. Ask to join one, or drop your own and choose who comes along.';
-export const SUPPORT_EMAIL = 'support@openplans.app';
+export const SUPPORT_EMAIL = 'info@openplans.app';
 
 // TODO before launch: swap for the real store listing URLs (see the v4 README).
-export const PLAY_STORE_URL = 'https://play.google.com/store/search?q=Open%20Plans&c=apps';
-export const APP_STORE_URL = 'https://www.apple.com/app-store/';
+export const PLAY_STORE_URL = '#';
+export const APP_STORE_URL = '#';
