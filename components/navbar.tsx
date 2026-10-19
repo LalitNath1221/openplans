@@ -14,7 +14,7 @@ const NAV = [
   { href: '/#faq', label: 'FAQ' },
 ];
 
-export function SiteHeader() {
+export function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);

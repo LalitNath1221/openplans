@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { SUPPORT_EMAIL } from '@/lib/site';
 import { FooterWord } from './footer-word';
 
-export function SiteFooter() {
+export function Footer() {
   return (
     <footer className="site-footer">
       <div className="container">

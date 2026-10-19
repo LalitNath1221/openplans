@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import { Bricolage_Grotesque, Caveat_Brush, Nunito } from 'next/font/google';
 import { IconSprite } from '@/components/icons';
 import { MotionProvider } from '@/components/motion-provider';
-import { SiteHeader } from '@/components/site-header';
-import { SiteFooter } from '@/components/site-footer';
+import { Navbar } from '@/components/navbar';
+import { Footer } from '@/components/footer';
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from '@/lib/site';
 import './globals.css';
 
@@ -94,9 +94,9 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         <IconSprite />
         <a className="skip-link" href="#main">Skip to content</a>
         <MotionProvider>
-          <SiteHeader />
+          <Navbar />
           {children}
-          <SiteFooter />
+          <Footer />
         </MotionProvider>
       </body>
     </html>

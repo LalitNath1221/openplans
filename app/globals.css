@@ -64,7 +64,8 @@
 *::before,
 *::after { box-sizing: border-box; }
 
-html { overflow-x: hidden; overflow-x: clip; scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 16px); -webkit-text-size-adjust: 100%; }
+/* Tap highlight goes through var() because the CSS minifier drops a plain `transparent` value. */
+html { overflow-x: hidden; overflow-x: clip; scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 16px); -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: var(--tap-highlight, transparent); }
 
 body {
   margin: 0;
@@ -159,8 +160,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .site-header {
   position: sticky; top: 0; z-index: 50;
   background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: saturate(1.6) blur(20px);
   -webkit-backdrop-filter: saturate(1.6) blur(20px);
+  backdrop-filter: saturate(1.6) blur(20px);
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -305,29 +306,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .vibe-thumb[data-cat='gaming'] { --bg: url('/assets/plans/gaming.jpg'); }
 
 /* ---------- Steps ---------- */
-.steps { background: #fff; overflow-x: hidden; overflow-x: clip; }
-.steps-layout { display: grid; grid-template-columns: 1fr minmax(320px, 0.85fr); gap: clamp(32px, 6vw, 88px); align-items: start; }
-.steps-list { display: grid; }
-.step {
-  display: grid; grid-template-columns: 52px 1fr; gap: 18px; align-items: start; width: 100%;
-  padding: 28px 24px; border-radius: var(--r-lg); border: 0; background: transparent; text-align: left; cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-.step + .step { margin-top: 8px; }
-.step-num { padding-top: 4px; color: var(--muted); font-size: 15px; font-weight: 800; transition: color 0.3s ease; }
-.step h3 { font-family: var(--display); font-size: clamp(21px, 2vw, 26px); font-weight: 900; line-height: 1.2; }
-.step p { margin-top: 8px; color: var(--muted); font-size: 16px; line-height: 1.6; max-width: 460px; }
-.step.active { background: var(--cream); }
-.step.active .step-num { color: var(--primary-ink); }
-.steps-stage { position: sticky; top: calc(var(--header-h) + 32px); display: grid; place-items: center; }
-.stage-glow {
-  position: absolute; width: 120%; aspect-ratio: 1; border-radius: 50%; z-index: 0;
-  background: radial-gradient(closest-side, rgba(255, 156, 86, 0.28), rgba(255, 156, 86, 0));
-}
+/* Layout lives in Tailwind classes in components/home/steps.tsx. */
 
 /* ---------- Phone + app screens ---------- */
 .phone {
-  position: relative; z-index: 1; width: 320px; max-width: 100%; aspect-ratio: 320 / 660;
+  position: relative; z-index: 1; width: 280px; max-width: 100%; aspect-ratio: 320 / 660;
   padding: 10px; border-radius: 50px; background: #14161f;
   box-shadow: 0 40px 80px rgba(26, 29, 46, 0.24), inset 0 0 0 2px #2c3040;
 }
@@ -585,12 +568,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .hero-copy .display { max-width: none; }
   .doodle { justify-self: center; max-height: none; }
 
-  .steps-layout { grid-template-columns: 1fr; }
-  .steps-stage { position: relative; top: 0; order: -1; margin-bottom: 8px; }
-  .steps { overflow: hidden; }
-  .stage-glow { width: 100%; }
-  .step { padding: 20px 18px; }
-
   .faq-layout { grid-template-columns: 1fr; }
   .crew-collage { height: clamp(470px, 135vw, 760px); max-width: 560px; margin-inline: auto; }
   .download-ring { display: none; }
@@ -618,8 +595,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .stk-in { left: 60%; top: 92%; }
 
 
-  .step { grid-template-columns: 36px 1fr; gap: 10px; }
-  .step p { font-size: 15px; }
   .phone { width: 290px; }
   .faq-list summary { padding: 18px; font-size: 16px; }
   .faq-list details p { padding: 0 18px 18px; font-size: 15px; }
