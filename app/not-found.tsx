@@ -14,7 +14,7 @@ export default function NotFound() {
           <span className="eyebrow">404</span>
           <h1>This plan fell through.</h1>
           <p className="lede">The page you&apos;re looking for doesn&apos;t exist or has moved.</p>
-          <div className="store-row" style={{ marginTop: 28 }}>
+          <div className="mt-7 grid grid-cols-1 gap-2.5 min-[361px]:grid-cols-2 sm:flex sm:flex-wrap sm:gap-3">
             <Link className="btn btn-primary" href="/">Back to home</Link>
           </div>
         </div>

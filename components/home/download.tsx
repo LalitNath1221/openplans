@@ -26,7 +26,7 @@ export function Download() {
         <Reveal as="p" delay={0.1}>
           Find a plan for tonight, or drop one of your own. Open Plans is free to download.
         </Reveal>
-        <Reveal className="store-row" delay={0.2}>
+        <Reveal className="mt-9 grid grid-cols-2 gap-2 sm:gap-3" delay={0.2}>
           <StoreButtons />
         </Reveal>
         <span className="download-note">For adults 18+ · Real plans, in real life</span>

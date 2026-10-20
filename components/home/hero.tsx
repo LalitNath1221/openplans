@@ -58,7 +58,7 @@ export function Hero() {
           <motion.p className="lede" variants={rise}>
             Find something happening near you, or post a plan and choose who comes along. Then go meet them.
           </motion.p>
-          <motion.div className="store-row" variants={rise}>
+          <motion.div className="mt-8 grid grid-cols-2 gap-2 sm:grid-cols-2 sm:gap-3" variants={rise}>
             <StoreButtons />
           </motion.div>
         </motion.div>
