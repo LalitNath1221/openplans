@@ -1,8 +1,8 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Icon } from '../icons';
 import { Reveal } from '../reveal';
 
 const STEPS = [
@@ -135,7 +135,7 @@ export function Steps() {
             />
             {/* Phone shrinks with screen height so the whole pinned view always fits. */}
             <motion.div
-              className="phone w-[min(260px,calc((100svh-var(--header-h)-330px)*320/660))]! min-[901px]:w-[min(280px,calc((100svh-var(--header-h)-64px)*320/660))]!"
+              className="phone rounded-[30px] md:rounded-[40px] w-[min(260px,calc((100svh-var(--header-h)-330px)*320/660))]! min-[901px]:w-[min(280px,calc((100svh-var(--header-h)-64px)*320/660))]!"
               id="app-screens"
               role="img"
               aria-label="Open Plans app screens: the Home feed, a plan page, and a group chat"
@@ -144,11 +144,10 @@ export function Steps() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
             >
-              <div className="phone-screen" aria-hidden="true">
-                <div className="phone-island" />
-                <Screen active={active === 0}><HomeScreen /></Screen>
-                <Screen active={active === 1}><PlanScreen /></Screen>
-                <Screen active={active === 2}><ChatScreen /></Screen>
+              <div className="phone-screen rounded-[20px] md:rounded-[40px]" aria-hidden="true">
+                <Screen active={active === 0} src="/mockups/home.png" />
+                <Screen active={active === 1} src="/mockups/plan.png" />
+                <Screen active={active === 2} src="/mockups/chat.png" />
               </div>
             </motion.div>
           </div>
@@ -159,10 +158,12 @@ export function Steps() {
   );
 }
 
-function Screen({ active, children }: { active: boolean; children: React.ReactNode }) {
+// Captured from the live HTML mockup at desktop size (notch included), so the screens stay crisp and keep
+// their layout however small the phone gets.
+function Screen({ active, src }: { active: boolean; src: string }) {
   return (
     <motion.div
-      className={`screen is-motion${active ? ' active' : ''}`}
+      className="absolute inset-0"
       initial={false}
       animate={
         active
@@ -171,126 +172,7 @@ function Screen({ active, children }: { active: boolean; children: React.ReactNo
       }
       transition={{ duration: 0.4, ease: 'easeOut' }}
     >
-      {children}
+      <Image src={src} alt="" fill sizes="280px" className="object-cover" />
     </motion.div>
-  );
-}
-
-function StatusBar() {
-  return <div className="status-bar"><span>9:41</span><i /></div>;
-}
-
-function HomeScreen() {
-  return (
-    <>
-      <StatusBar />
-      <div className="app-head">
-        <div className="app-head-left">
-          <span className="avatar v2">MS</span>
-          <span className="loc-pill"><Icon name="pin-bold" />Ganeshguri<Icon name="chevron-down" /></span>
-        </div>
-        <span className="verified-chip"><Icon name="verified" />Verified</span>
-      </div>
-      <div className="app-hello">Hey Meera 👋</div>
-      <div className="app-title">What&apos;s the plan?</div>
-      <div className="app-search"><Icon name="search" />Search plans</div>
-      <div className="app-chips">
-        <span className="app-chip on"><Icon name="grid" />All</span>
-        <span className="app-chip">🍕 Food</span>
-        <span className="app-chip">☕ Chill</span>
-        <span className="app-chip">🏸 Sports</span>
-      </div>
-      <div className="app-section"><small>Nearby</small><strong>6 plans happening</strong></div>
-      <div className="app-feed">
-        <div className="plan-card" data-cat="food">
-          <div className="plan-top"><span className="plan-chip">Food</span><span className="plan-spots">3 spots left</span></div>
-          <div className="plan-body">
-            <div className="plan-title">Street Food Crawl</div>
-            <div className="plan-meta">
-              <span><Icon name="calendar" />Today · Evening</span>
-              <span><Icon name="pin" />Fancy Bazar · 1.2 km away</span>
-            </div>
-          </div>
-          <div className="plan-foot">
-            <div className="host">
-              <span className="avatar">RK</span>
-              <div>
-                <div className="host-name">Riya <Icon name="verified" /></div>
-                <div className="host-sub">24 <span className="rating"><Icon name="star" />4.8</span></div>
-              </div>
-            </div>
-            <span className="plan-btn">Request to Join</span>
-          </div>
-        </div>
-        <div className="plan-card" data-cat="sports">
-          <div className="plan-top"><span className="plan-chip">Sports</span><span className="plan-spots">1 spot left</span></div>
-          <div className="plan-body">
-            <div className="plan-title">Badminton at Dawn</div>
-            <div className="plan-meta">
-              <span><Icon name="calendar" />Tomorrow · Morning</span>
-              <span><Icon name="pin" />Khanapara · 3.4 km away</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="tab-bar">
-        <span className="tab on"><Icon name="home-bold" />Home</span>
-        <span className="tab"><Icon name="people" /></span>
-        <span className="tab"><Icon name="bell" /><i className="tab-dot" /></span>
-        <span className="tab"><Icon name="user" /></span>
-      </div>
-    </>
-  );
-}
-
-function PlanScreen() {
-  return (
-    <>
-      <div className="plan-card detail-banner" data-cat="movies">
-        <StatusBar />
-        <div className="plan-top"><span className="plan-chip">Movies</span><span className="plan-spots">2 spots left</span></div>
-        <div className="plan-body">
-          <div className="plan-title">Movie night at City Centre</div>
-          <div className="plan-meta"><span><Icon name="calendar" />Sat, 26 Oct · Evening</span></div>
-        </div>
-      </div>
-      <div className="detail-body">
-        <div className="info-row"><span className="avatar v4">AK</span><div>Hosted by Aman <small>26 · 12 plans hosted</small></div></div>
-        <div className="info-row"><Icon name="pin" /><div>Christian Basti <small>Area shown to everyone</small></div></div>
-        <div className="info-row locked"><Icon name="lock" /><div>Exact address &amp; time <small>Unlocks when the host approves you</small></div></div>
-        <div className="going">
-          <span>4 of 6 going</span>
-          <span className="avatar-stack">
-            <span className="avatar v4">AK</span><span className="avatar v5">SD</span><span className="avatar v3">JB</span><span className="avatar">RK</span>
-          </span>
-        </div>
-      </div>
-      <div className="app-toast"><Icon name="check-bold" />Request sent. Aman will take a look.</div>
-      <div className="app-cta pending"><Icon name="hourglass" />Pending</div>
-    </>
-  );
-}
-
-function ChatScreen() {
-  return (
-    <>
-      <StatusBar />
-      <div className="chat-head">
-        <span className="avatar-cat" />
-        <div><strong>Movie night at City Centre</strong><small>5 members</small></div>
-        <Icon name="people" />
-      </div>
-      <div className="safety-banner">
-        <Icon name="shield" />
-        <span>Meeting up? Keep it public and don&apos;t share personal info here. Tap for tips.</span>
-      </div>
-      <div className="messages">
-        <div className="msg"><small>Aman · host</small><p>Meeting at the PVR lobby, 6:45. Tickets are booked 🍿</p></div>
-        <div className="msg"><small>Sneha</small><p>Perfect, I&apos;ll be there by 6:40</p></div>
-        <div className="msg me"><p>On my way! Saving seats for snacks</p></div>
-        <div className="msg"><small>Jay</small><p>Running 5 min late, start without me 😅</p></div>
-      </div>
-      <div className="composer">Message the group<b><Icon name="arrow-up" /></b></div>
-    </>
   );
 }

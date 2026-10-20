@@ -311,11 +311,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* ---------- Phone + app screens ---------- */
 .phone {
   position: relative; z-index: 1; width: 280px; max-width: 100%; aspect-ratio: 320 / 660;
-  padding: 10px; border-radius: 50px; background: #14161f;
+  padding: 10px; background: #14161f;
   box-shadow: 0 40px 80px rgba(26, 29, 46, 0.24), inset 0 0 0 2px #2c3040;
 }
 .phone-screen {
-  position: relative; height: 100%; border-radius: 40px; overflow: hidden; background: var(--page);
+  position: relative; height: 100%; overflow: hidden; background: var(--page);
   font-size: 13px; line-height: 1.35;
 }
 .phone-island { position: absolute; z-index: 5; top: 10px; left: 50%; translate: -50% 0; width: 92px; height: 26px; border-radius: 20px; background: #14161f; }
@@ -351,7 +351,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   background: var(--surface); border: 1px solid var(--border); color: var(--muted); font-size: 12px; font-weight: 600;
 }
 .app-search .icon { width: 15px; height: 15px; }
-.app-chips { display: flex; gap: 7px; margin: 10px -16px 0; padding: 2px 16px 4px; overflow: hidden; }
+.app-chips { display: flex; flex-shrink: 0; gap: 7px; margin: 10px -16px 0; padding: 2px 16px 4px; overflow: hidden; }
 .app-chip {
   display: inline-flex; align-items: center; gap: 5px; flex: 0 0 auto; padding: 6px 11px; border-radius: var(--r-pill);
   background: #fff; border: 1px solid var(--border); font-size: 11px; font-weight: 700; box-shadow: 0 3px 8px rgba(58, 75, 140, 0.08);
@@ -604,7 +604,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 @media (max-width: 360px) {
   .store-row { grid-template-columns: 1fr; }
-  .phone { width: 100%; }
+  .phone { width: 100%;
+   }
 }
 
 @media (prefers-reduced-motion: reduce) {
